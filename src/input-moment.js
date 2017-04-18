@@ -4,6 +4,7 @@ var moment = require('moment');
 var React = require('react');
 var Calendar = require('./calendar');
 var Time = require('./time');
+import I18n from './i18n'
 
 module.exports = React.createClass({
   displayName: 'InputMoment',
@@ -24,17 +25,18 @@ module.exports = React.createClass({
   render() {
     var tab = this.state.tab;
     var m = this.props.moment;
-    var props = blacklist(this.props, 'className', 'moment', 'prevMonthIcon', 'nextMonthIcon', 'onSave');
+    var locale = this.props.locale;
+    var props = blacklist(this.props, 'className', 'moment', 'locale', 'prevMonthIcon', 'nextMonthIcon', 'onSave');
     props.className = cx('m-input-moment', this.props.className);
 
     return (
       <div {...props}>
         <div className="options">
           <button type="button" className={cx('ion-calendar im-btn', {'is-active': tab === 0})} onClick={this.handleClickTab.bind(null, 0)}>
-            Date
+            {I18n.t('inputMoment.date')}
           </button>
           <button type="button" className={cx('ion-clock im-btn', {'is-active': tab === 1})} onClick={this.handleClickTab.bind(null, 1)}>
-            Time
+            {I18n.t('inputMoment.time')}
           </button>
         </div>
 
@@ -42,6 +44,7 @@ module.exports = React.createClass({
           <Calendar
             className={cx('tab', {'is-active': tab === 0})}
             moment={m}
+            locale={locale}
             onChange={this.props.onChange}
             prevMonthIcon={this.props.prevMonthIcon}
             nextMonthIcon={this.props.nextMonthIcon}
@@ -55,7 +58,7 @@ module.exports = React.createClass({
 
         <button type="button" className="im-btn btn-save ion-checkmark"
           onClick={this.handleSave}>
-          Save
+          {I18n.t('inputMoment.save')}
         </button>
       </div>
     );
