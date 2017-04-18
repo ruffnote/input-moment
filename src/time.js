@@ -1,6 +1,7 @@
 var cx = require('classnames');
 var React = require('react');
 var InputSlider = require('react-input-slider');
+import I18n from './i18n'
 
 module.exports = React.createClass({
   displayName: 'Time',
@@ -17,7 +18,7 @@ module.exports = React.createClass({
         </div>
 
         <div className="sliders">
-          <div className="time-text">Hours:</div>
+          <div className="time-text">{I18n.t('inputMoment.hours')}:</div>
           <InputSlider
             className="u-slider-time"
             xmin={0}
@@ -25,7 +26,7 @@ module.exports = React.createClass({
             x={m.hour()}
             onChange={this.changeHours}
           />
-          <div className="time-text">Minutes:</div>
+          <div className="time-text">{I18n.t('inputMoment.minutes')}:</div>
           <InputSlider
             className="u-slider-time"
             xmin={0}

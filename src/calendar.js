@@ -4,6 +4,19 @@ var moment = require('moment');
 var React = require('react');
 var range = require('lodash/range');
 var chunk = require('lodash/chunk');
+import I18n from './i18n'
+
+moment.locale('en', {
+  longDateFormat : {
+    LL: 'MMMM YYYY'
+  }
+})
+
+moment.locale('ja', {
+  longDateFormat : {
+    LL: 'YYYY年MM月'
+  }
+})
 
 var Day = React.createClass({
   displayName: 'Day',
@@ -29,6 +42,7 @@ module.exports = React.createClass({
 
   render() {
     var m = this.props.moment;
+    m.locale(this.props.locale || 'en')
     var d = m.date();
     var d1 = m.clone().subtract(1, 'month').endOf('month').date();
     var d2 = m.clone().date(1).day();
@@ -40,7 +54,7 @@ module.exports = React.createClass({
       range(1, 42-d3-d2+1)
     );
 
-    var weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var weeks = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 
     return (
       <div className={cx('m-calendar', this.props.className)}>
@@ -48,7 +62,7 @@ module.exports = React.createClass({
           <button type="button" className="prev-month" onClick={this.prevMonth}>
             <i className={this.props.prevMonthIcon}/>
           </button>
-          <span className="current-date">{m.format('MMMM YYYY')}</span>
+          <span className="current-date">{m.format('LL')}</span>
           <button type="button" className="next-month" onClick={this.nextMonth}>
             <i className={this.props.nextMonthIcon}/>
           </button>
@@ -57,7 +71,7 @@ module.exports = React.createClass({
         <table>
           <thead>
             <tr>
-              {weeks.map((w, i) => <td key={i}>{w}</td>)}
+              {weeks.map((w, i) => <td key={i}>{I18n.t(`inputMoment.${w}`)}</td>)}
             </tr>
           </thead>
 
