@@ -6,18 +6,6 @@ var range = require('lodash/range');
 var chunk = require('lodash/chunk');
 import I18n from './i18n'
 
-moment.locale('en', {
-  longDateFormat : {
-    LL: 'MMMM YYYY'
-  }
-})
-
-moment.locale('ja', {
-  longDateFormat : {
-    LL: 'YYYY年MM月'
-  }
-})
-
 var Day = React.createClass({
   displayName: 'Day',
 
@@ -61,7 +49,7 @@ module.exports = React.createClass({
           <button type="button" className="prev-month" onClick={this.prevMonth}>
             <i className={this.props.prevMonthIcon}/>
           </button>
-          <span className="current-date">{m.format('LL')}</span>
+          <span className="current-date">{m.format(I18n.t('inputMoment.yearDateFormat'))}</span>
           <button type="button" className="next-month" onClick={this.nextMonth}>
             <i className={this.props.nextMonthIcon}/>
           </button>

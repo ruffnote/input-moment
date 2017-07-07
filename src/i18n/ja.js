@@ -13,5 +13,6 @@ export default {
     sat: '土',
     hours: '時',
     minutes: '分',
+    yearDateFormat: 'YYYY年MM月',
   }
 }

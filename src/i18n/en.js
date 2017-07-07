@@ -13,5 +13,6 @@ export default {
     sat: 'Sat',
     hours: 'Hours',
     minutes: 'Minutes',
+    yearDateFormat: 'MMMM YYYY',
   }
 }
