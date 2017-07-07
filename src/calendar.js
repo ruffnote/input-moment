@@ -42,7 +42,6 @@ module.exports = React.createClass({
 
   render() {
     var m = this.props.moment;
-    m.locale(this.props.locale || 'en')
     var d = m.date();
     var d1 = m.clone().subtract(1, 'month').endOf('month').date();
     var d2 = m.clone().date(1).day();
